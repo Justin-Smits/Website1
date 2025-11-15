@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Van der Zwaard Jachtwerf</title>
+  <!-- Favicon (boot-icoon) -->
+ <link rel="icon" type="image/x-icon" href="icon.jpeg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Van der Zwaard Jachtwerf: ligplaatsen, jachtwerf, zomer- en winterstalling direct aan de Westeinderplassen.">
+  <style>
+    :root {
+      --primary: #0073AA;      /* Nieuwe hoofdkleur blauw */
+      --primary-light: #0c8fd0;
+      --primary-soft: #e0f3fb;
+      --accent: #f9b233;
+      --bg: #f5f7fb;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --radius-lg: 1.2rem;
+      --radius-md: 0.9rem;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.18);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== HEADER & NAV ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(209, 213, 219, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #b6e0f6;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--primary);
+    }
+
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.1rem;
+      color: var(--muted);
+      transition: color 0.18s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.18rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      transition: width 0.18s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid #b6e0f6;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #f9fafb;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.3);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.35);
+      background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--primary);
+      border-color: #b6e0f6;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-soft);
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0.3rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--primary);
+      margin: 4px 0;
+      border-radius: 999px;
+    }
+
+    header.nav-open .nav-links,
+    header.nav-open .nav-cta {
+      display: flex;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(180deg, #e5eefc 0%, #ffffff 50%, #f5f7fb 100%);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primary);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3.5vw, 2.8rem);
+      margin-bottom: 0.7rem;
+      color: var(--primary);
+    }
+
+    .hero-title span {
+      color: var(--text);
+    }
+
+    .hero-subtitle {
+      max-width: 34rem;
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-meta-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #16a34a;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-main-image {
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .hero-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 0.7s ease;
+    }
+
+    .hero-card:hover .hero-main-image img {
+      transform: scale(1.08);
+    }
+
+    .hero-card-body {
+      padding: 1.2rem 1.2rem 1.3rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      border: 1px solid #d1d5db;
+      background: #f3f4f6;
+      color: var(--muted);
+    }
+
+    .hero-card-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 0.8rem;
+    }
+
+    .hero-mini {
+      border-radius: var(--radius-md);
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0.8rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .hero-mini strong {
+      color: var(--text);
+    }
+
+    .hero-thumb {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      background: #000;
+    }
+
+    .hero-thumb img {
+      width: 100%;
+      height: 100%;
+      min-height: 120px;
+      object-fit: cover;
+    }
+
+    /* ===== USP BAR ===== */
+    .usp-bar {
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .usp-bar-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.3rem 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .usp-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .usp-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      border: 2px solid var(--primary);
+      flex-shrink: 0;
+    }
+
+    .usp-item strong {
+      color: var(--text);
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-headline {
+      max-width: 40rem;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primary);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .about-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-top: 0.6rem;
+    }
+
+    .about-card {
+      border-radius: var(--radius-lg);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .about-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .about-card-body {
+      padding: 1rem 1rem 1.1rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .about-card-body strong {
+      color: var(--text);
+    }
+
+    /* ===== SERVICES ===== */
+    .services {
+      background: #ffffff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      border-radius: var(--radius-md);
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 1.2rem 1.1rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .service-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--primary);
+    }
+
+    .service-title {
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+
+    .service-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+    }
+
+    .service-pill {
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: var(--muted);
+    }
+
+    /* ===== RATES & FACILITIES ===== */
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 2rem;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      padding: 1.4rem 1.3rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .card-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      padding: 0.22rem 0.7rem;
+      background: #f9fafb;
+      color: var(--muted);
+    }
+
+    .rate-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .rate-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px dashed #e5e7eb;
+      font-size: 0.87rem;
+    }
+
+    .rate-price {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .rate-note {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    .facility-list {
+      display: grid;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+    }
+
+    .facility-item {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .facility-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid #cbd5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--primary);
+      flex-shrink: 0;
+      background: #eff3ff;
+      margin-top: 0.05rem;
+    }
+
+    /* ===== GALERIJ ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 1.2rem;
+    }
+
+    .gallery-main {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .gallery-main img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .gallery-side {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-thumb {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      background: #000;
+    }
+
+    .gallery-thumb img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 0.7rem;
+    }
+
+    /* ===== REVIEWS ===== */
+    .reviews {
+      background: #ffffff;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .review-summary {
+      border-radius: var(--radius-lg);
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 1.4rem 1.3rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .review-score {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-size: 1.6rem;
+      color: #f59e0b;
+      margin-bottom: 0.2rem;
+    }
+
+    .review-score span.small {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .review-list {
+      display: grid;
+      gap: 0.9rem;
+      font-size: 0.88rem;
+    }
+
+    .review-card {
+      border-radius: var(--radius-md);
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 0.9rem 0.9rem 0.95rem;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.3rem;
+      align-items: center;
+    }
+
+    .review-author {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .review-stars {
+      font-size: 0.8rem;
+      color: #f59e0b;
+      white-space: nowrap;
+    }
+
+    .review-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .review-date {
+      margin-top: 0.4rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .reviews-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.7rem;
+    }
+
+    .reviews-map-embed {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      height: 260px;
+    }
+
+    .reviews-map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 2rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border-radius: 0.8rem;
+      border: 1px solid #d1d5db;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      outline: none;
+      background: #ffffff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(0, 115, 170, 0.25);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-hint {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: auto;
+      margin-top: 0.12rem;
+    }
+
+    /* Succes-/foutmelding formulier */
+    .form-message {
+      margin-top: 0.6rem;
+      font-size: 0.84rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 0.7rem;
+      display: none;
+    }
+
+    .form-message.success {
+      background: #ecfdf3;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    .form-message.error {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      padding: 1.3rem 1.2rem;
+      font-size: 0.9rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-value {
+      color: var(--text);
+    }
+
+    .map-frame {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      height: 180px;
+    }
+
+    .map-frame iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .whatsapp-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 62px;
+  height: 62px;
+  background: #25D366;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
+}
+
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1.7rem 0 2.1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .about-grid,
+      .split-grid,
+      .gallery-grid,
+      .contact-grid,
+      .reviews-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .about-highlights {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-card {
+        margin-top: 0.5rem;
+      }
+
+      .usp-bar-inner {
+        align-items: flex-start;
+      }
+
+      .reviews-map-embed {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+        width: 100%;
+      }
+header.nav-open .nav-links a {
+  pointer-events: auto;
+}
+
+      .nav {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+       header.nav-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: #ffffff;
+    padding: 0.75rem 0.85rem;
+    margin-top: 0.5rem;
+    border-radius: 0.9rem;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+    gap: 0.2rem;
+  }
+
+  header.nav-open .nav-cta {
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: flex-start;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 0.55rem 0;
+    font-size: 0.95rem;
+  }
+
+      .hero-grid {
+        gap: 2rem;
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      @media (max-width: 768px) {
+  .nav-cta {
+    display: none !important;
+  }
+}
+
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WhatsApp Floating Button -->
+<a href="https://wa.me/31646041482?text=Hallo%20Jachthaven%20van%20der%20Zwaard,%20ik%20heb%20een%20vraag%20over..."
+   class="whatsapp-float" 
+   target="_blank" 
+   aria-label="Chat via WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+       alt="WhatsApp" />
+</a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-logo">
+          <!-- Logo van MeerWesteinder (Van der Zwaard) -->
+          <img src="icon.jpeg" alt="Logo Jachtwerf van der Zwaard">
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Van der Zwaard Jachtwerf</div>
+          <div class="brand-sub">Zomer- & winterstalling · Onderhoud</div>
+        </div>
+      </div>
+
+      <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('header').classList.toggle('nav-open')">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#jachthaven">Jachthaven</a>
+        <a href="#diensten">Diensten</a>
+        <a href="#tarieven">Tarieven</a>
+        <a href="#galerij">Galerij</a>
+        <a href="#recensies">Recensies</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <span>Bel voor contact</span>
+        <a href="tel:0297325008" class="btn btn-outline">0297&nbsp;325&nbsp;008</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-kicker">Jachthaven · Jachtwerf · Aalsmeer</div>
+          <h1 class="hero-title">
+            Meer aan op de <span>Westeinderplassen</span>
+          </h1>
+          <p class="hero-subtitle">
+            Van der Zwaard Jachtwerf is een fijne haven in Aalsmeer
+            met circa 50 ligplaatsen, ruime winterstalling. Een vertrouwd jachtwerf aan de Westeinderplassen.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn">Ligplaats of stalling aanvragen</a>
+            <a href="#diensten" class="btn btn-outline">Bekijk onze diensten</a>
+          </div>
+          <div class="hero-meta">
+            <span><span class="hero-meta-dot"></span> Botenlift & helling tot ca. 25 ton</span>
+            <span><span class="hero-meta-dot"></span>± 3000 m² overdekte winterstalling</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Impressie Jachthaven van der Zwaard">
+          <div class="hero-main-image">
+            <!-- Overzicht haven -->
+            <img src="image1.jpg" alt="Overzicht van de ligplaatsen in Jachthaven van der Zwaard">
+          </div>
+          <div class="hero-card-body">
+            <div class="hero-badges">
+              <span class="pill">Gezellige haven</span>
+              <span class="pill">Direct aan de Westeinderplassen</span>
+              <span class="pill">Zomer- & winterstalling</span>
+            </div>
+            <div class="hero-card-row">
+              <div class="hero-mini">
+                <strong>Veilig en beschut</strong><br>
+                De haven ligt aan de luwere kant van de Westeinderplassen, met nette
+                steigers, overzichtelijk terrein en korte looplijnen naar parkeergelegenheid.
+              </div>
+              <div class="hero-thumb">
+                <!-- Helling / botenlift -->
+                <img src="image2.jpg" alt="Botenlift bij Jachtwerf van der Zwaard">
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- USP-BALK -->
+    <section class="usp-bar" aria-label="Kerngegevens jachthaven">
+      <div class="container usp-bar-inner">
+        <div class="usp-item">
+          <span class="usp-dot"></span>
+          <span><strong>± 50 ligplaatsen</strong> aan de Westeinderplassen</span>
+        </div>
+        <div class="usp-item">
+          <span class="usp-dot"></span>
+          <span><strong>Helling & jachtwerf</strong> voor onderhoud en reparatie</span>
+        </div>
+        <div class="usp-item">
+          <span class="usp-dot"></span>
+          <span><strong>Ruime winterstalling</strong> in loods en op de wal</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- JACHTHAVEN -->
+    <section id="jachthaven">
+      <div class="container">
+        <div class="section-headline">
+          <div class="section-kicker">Over de jachthaven</div>
+          <h2 class="section-title">Vertrouwde haven in Aalsmeer</h2>
+          <p class="section-subtitle">
+            Al decennialang een vertrouwd adres voor watersporters in Aalsmeer en omstreken.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              Van der Zwaard Jachtwerf ligt aan de Uiterweg in Aalsmeer en biedt
+              een beschutte ligplaats aan de Westeinderplassen. Vanuit de haven vaart u
+              in korte tijd naar onder andere het Braassemermeer, de Kagerplassen of
+              richting Amsterdam.
+            </p>
+            <p>
+              De haven beschikt over circa 50 ligplaatsen voor kleine en grotere motor-
+              en zeilboten. Op het terrein vindt u een jachtwerf met botenlift,
+              hydraulische botenwagen en ruime loods voor winterstalling. Het terrein
+              is overzichtelijk, rustig en praktisch ingericht voor zowel vaste ligplaatshouders
+              als passanten.
+            </p>
+
+            <div class="about-highlights">
+              <div class="pill">± 50 ligplaatsen</div>
+              <div class="pill">Botenlift & helling tot ca. 25 ton</div>
+              <div class="pill">Beschutte ligging aan de plas</div>
+              <div class="pill">Nette sanitaire voorzieningen</div>
+            </div>
+          </div>
+
+          <aside class="about-card">
+            <!-- Indoor stalling / werkplaats -->
+            <img src="image3.jpg" alt="Schip in de loods bij Jachtwerf van der Zwaard">
+            <div class="about-card-body">
+              <strong>Winterstalling in de loods</strong><br>
+              Ruime overdekte stalling in de loods, aangevuld met plaatsen op de wal.
+              Ideaal om in de winter onderhoud aan uw boot te laten uitvoeren of zelf te klussen.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIENSTEN -->
+    <section id="diensten" class="services">
+      <div class="container">
+        <div class="section-headline">
+          <div class="section-kicker">Diensten</div>
+          <h2 class="section-title">Jachthaven, jachtwerf & stalling op één locatie</h2>
+          <p class="section-subtitle">
+            Van vaste ligplaats tot hellingwerk en winterstalling: alles centraal geregeld.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-label">01 · Jachthaven</div>
+            <h3 class="service-title">Zomerligplaatsen</h3>
+            <p>
+              Beschutte ligplaatsen met goede steigers direct aan de Westeinderplassen.
+              Geschikt voor diverse typen motor- en zeilboten.
+            <div class="service-meta">
+              <span class="service-pill">Vaste ligplaatsen</span>
+              <span class="service-pill">Beschutte ligging</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-label">02 · Jachtwerf</div>
+            <h3 class="service-title">Helling & onderhoud</h3>
+            <p>
+              Met de botenlift en hydraulische wagen kunnen schepen tot ca. 25 ton
+              worden gehellingd. Ideaal voor onderhoud aan onderwaterschip en romp,
+              zoals reiniging, inspectie of schilderwerk.
+            </p>
+            <div class="service-meta">
+              <span class="service-pill">Hellingwerk</span>
+              <span class="service-pill">Onderwaterschip reinigen</span>
+              <span class="service-pill">Antifouling & schilderwerk</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-label">03 · Stalling</div>
+            <h3 class="service-title">Zomer- & winterstalling</h3>
+            <p>
+              Overdekte stalling in de loods en plaatsen op de wal. Zelf klussen aan uw
+              boot is in overleg mogelijk, zowel in de winter als in het zomerseizoen.
+              Wij denken graag met u mee over de beste oplossing voor uw schip.
+            </p>
+            <div class="service-meta">
+              <span class="service-pill">± 3000 m² loodsruimte</span>
+              <span class="service-pill">Stalling op de wal</span>
+              <span class="service-pill">Zelf klussen mogelijk</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARIEVEN & VOORZIENINGEN -->
+    <section id="tarieven">
+      <div class="container">
+        <div class="section-headline">
+          <div class="section-kicker">Tarieven & voorzieningen</div>
+          <h2 class="section-title">Heldere afspraken, offerte op maat</h2>
+          <p class="section-subtitle">
+            Onderstaande indicaties helpen u op weg. Voor een nauwkeurige prijsopgave kunt u contact opnemen.
+          </p>
+        </div>
+
+        <div class="split-grid">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Indicatieve tarieven</h3>
+                <p style="font-size:0.82rem; color:var(--muted); margin-top:0.15rem;">
+                De tarieven zijn inclusief BTW.
+                </p>
+              </div>
+              <span class="card-tag">Per vierkante meter</span>
+            </div>
+
+            <div class="rate-list">
+              <div class="rate-row">
+                <div>Zomerligplaats (april – oktober)</div>
+                <div class="rate-price">€&nbsp;38,50– / m²</div>
+              </div>
+              <div class="rate-row">
+                <div>Winterstalling in loods (oktober-maart)</div>
+                <div class="rate-price">€&nbsp;56,50– / m²</div>
+              </div>
+              <div class="rate-row">
+                <div>Winterstalling op de wal</div>
+                <div class="rate-price">€&nbsp;33,50– / m²</div>
+              </div>
+              <div class="rate-row">
+                <div>In-/uit het water (hellingwerk)</div>
+                <div class="rate-price">Op aanvraag</div>
+              </div>
+              <div class="rate-row">
+                <div>Antifouling & onderwaterschip</div>
+                <div class="rate-price">Op aanvraag</div>
+              </div>
+            </div>
+
+            <p class="rate-note">
+              Alle genoemde bedragen zijn indicatief en kunnen wijzigen. Aan deze informatie kunnen geen rechten worden ontleend.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h3 class="card-title">Voorzieningen op de haven</h3>
+              </div>
+              <span class="card-tag">Voor uw comfort</span>
+            </div>
+
+            <div class="facility-list">
+              <div class="facility-item">
+                <div class="facility-icon">✓</div>
+                <div>
+                  <strong>Sanitair</strong><br>
+                  Nette sanitaire voorzieningen voor ligplaatshouders.
+                </div>
+              </div>
+              <div class="facility-item">
+                <div class="facility-icon">✓</div>
+                <div>
+                  <strong>Parkeren</strong><br>
+                  Parkeergelegenheid op loopafstand van de haven.
+                </div>
+              </div>
+              <div class="facility-item">
+                <div class="facility-icon">✓</div>
+                <div>
+                  <strong>Beschut terrein</strong><br>
+                  Gelegen aan de luwere kant van de Westeinderplassen.
+                </div>
+              </div>
+              <div class="facility-item">
+                <div class="facility-icon">✓</div>
+                <div>
+                  <strong>Zelf klussen</strong><br>
+                  In overleg kunt u op de werf zelf werkzaamheden uitvoeren aan uw boot.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIJ -->
+    <section id="galerij">
+      <div class="container">
+        <div class="section-headline">
+          <div class="section-kicker">Impressie</div>
+          <h2 class="section-title">Een blik op haven en werf</h2>
+          <p class="section-subtitle">
+            Foto’s van de haven, de ligplaatsen en de werkzaamheden op de werf.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-main">
+            <img src="https://www.meerwesteinder.nl/wp-content/uploads/2023/01/Zwaard1.jpg" alt="Ligplaatsen bij Jachthaven van der Zwaard">
+          </figure>
+          <div class="gallery-side">
+            <figure class="gallery-thumb">
+              <img src="https://www.meerwesteinder.nl/wp-content/uploads/2023/01/Zwaard2-1024x576.jpg" alt="Boot in de hijs bij de botenlift">
+            </figure>
+            <figure class="gallery-thumb">
+              <img src="https://www.meerwesteinder.nl/wp-content/uploads/2023/01/Zwaard4.jpg" alt="Werkzaamheden aan een schip in de loods">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENSIES (Google Reviews) -->
+    <section id="recensies" class="reviews">
+      <div class="container">
+        <div class="section-headline">
+          <div class="section-kicker">Recensies</div>
+          <h2 class="section-title">Wat zeggen onze klanten over de jachthaven?</h2>
+          <p class="section-subtitle">
+            Onderstaande beoordelingen worden live opgehaald via Google Reviews, zodat u een actueel beeld krijgt van de ervaringen van andere watersporters.
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          <!-- Linkerzijde: summary & reviewlijst -->
+          <div>
+            <div class="review-summary">
+              <div id="review-count" style="font-size:0.88rem; margin-bottom:0.7rem;">
+               <div class="review-list">
+  <div class="review-card">
+    <div class="review-header">
+      <div class="review-author">Google-reviews</div>
+      <div class="review-stars">★★★★★</div>
+    </div>
+    <div class="review-text">
+      Lees de meest recente ervaringen van onze klanten op Google.
+    </div>
+    <div class="review-date">
+      De beoordelingen worden rechtstreeks op Google bijgehouden.
+    </div>
+
+    <a href="https://www.google.com/search?sca_esv=fd5333ef45dac276&hl=nl-NL&gl=nl&sxsrf=AE3TifOXgC6fKFWMZTUKZyh2W5IHEsxZ-Q:1763235871801&q=Van+der+Zwaard+Jachtwerf+B.V.,+Uiterweg+363,+1431+AK+Aalsmeer&si=AMgyJEuzsz2NflaaWzrzdpjxXXRaJ2hfdMsbe_mSWso6src8s-vYO7rI-5kc18nlTiEpxPcpMi02uCr46TDZvTEeJZ6w0VpyeNr2cNXcXSkw7YA9eXbwIew%3D&uds=AOm0WdGkpxSFb4V-1zVEf5cj2YGj_MVUxrnUUfssWbE-gs7d0d0WfyfiRAawlngNe9sSqdrY10l1KW4gyJQh1Zzq91auDoE29LAtNtf2mMxvb989NLJ7VgQG13FSebx2Vo2jQlHCUZ0yn7QbVLWH1LuePHpKSd36B6745GbPMGSP0IDqyADFHOA&sa=X&ved=2ahUKEwjG3qy-9fSQAxV2hf0HHa5YBFgQ3PALegQIGxAE&biw=1528&bih=738&dpr=1.25"
+       target="_blank"
+       rel="noopener"
+       class="btn"
+       style="margin-top:0.6rem;">
+      Bekijk alle reviews op Google
+    </a>
+  </div>
+</div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Rechterzijde: embedded Google Maps (plaats) -->
+          <div class="reviews-map-embed">
+            <!-- Kaart met locatie / reviews-knop -->
+            <iframe
+              title="Locatie Van der Zwaard Jachtwerf B.V."
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Van+der+Zwaard+Jachtwerf+B.V.,+Uiterweg+363,+Aalsmeer&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-headline">
+          <div class="section-kicker">Contact</div>
+          <h2 class="section-title">Vraag naar beschikbaarheid of stel uw vraag</h2>
+          <p class="section-subtitle">
+            Vul het formulier in voor informatie over ligplaatsen, stalling of hellingwerk. We nemen zo spoedig mogelijk contact met u op.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- FORMULIER -->
+          <div>
+            <!-- Formulier: frontend-werkend met succesmelding -->
+            <form id="contact-form" action="sendmail.php" method="POST">
+              <div class="form-row">
+                <div>
+                  <label for="naam">Naam *</label>
+                  <input type="text" id="naam" name="naam" placeholder="Uw naam" required>
+                </div>
+                <div>
+                  <label for="email">E-mailadres *</label>
+                  <input type="email" id="email" name="email" placeholder="naam@voorbeeld.nl" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="telefoon">Telefoonnummer</label>
+                  <input type="tel" id="telefoon" name="telefoon" placeholder="Uw telefoonnummer">
+                </div>
+                <div>
+                  <label for="onderwerp">Onderwerp</label>
+                  <select id="onderwerp" name="onderwerp">
+                    <option value="">Maak een keuze</option>
+                    <option value="ligplaats">Vraag over ligplaats</option>
+                    <option value="winterstalling">Vraag over winterstalling</option>
+                    <option value="zomerstalling">Vraag over zomerstalling</option>
+                    <option value="hellingwerk">Hellingwerk / onderhoud</option>
+                    <option value="anders">Overige vraag</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label for="boot">Gegevens van uw schip</label>
+                <input type="text" id="boot" name="boot" placeholder="Type boot, lengte, breedte, diepgang">
+                <p class="form-hint">Deze informatie helpt ons bij een gerichte reactie.</p>
+              </div>
+
+              <div>
+                <label for="bericht">Bericht *</label>
+                <textarea id="bericht" name="bericht" placeholder="Beschrijf uw vraag of verzoek" required></textarea>
+              </div>
+
+              <div class="checkbox-row">
+  <input type="checkbox" id="privacy" name="privacy" required>
+  <label for="privacy">
+    Ik ga akkoord met de verwerking van mijn gegevens volgens de 
+    <a href="#privacyverklaring" style="color:#0073AA; text-decoration:underline; cursor:pointer;">
+      privacyverklaring
+    </a>. *
+  </label>
+</div>
+
+
+              <div id="form-message" class="form-message" aria-live="polite"></div>
+
+              <button type="submit" class="btn" style="margin-top:0.3rem;">
+                Verstuur bericht
+              </button>
+            </form>
+          </div>
+
+          <!-- CONTACTGEGEVENS -->
+          <aside class="contact-card">
+            <div>
+              <div class="contact-label">Adres</div>
+              <div class="contact-value">
+                Van der Zwaard Jachtwerf<br>
+                Uiterweg 363<br>
+                1431 AK Aalsmeer
+              </div>
+            </div>
+
+            <div>
+              <div class="contact-label">Telefoon & e-mail</div>
+              <div class="contact-value">
+                T: 0297&nbsp;325&nbsp;008 / 0297&nbsp;750&nbsp;598<br>
+                Mobiel: 06&nbsp;4604&nbsp;1482<br>
+                E: <a href="mailto:info@vdzwaardjachtwerf.nl">info@vdzwaardjachtwerf.nl</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="contact-label">Openingstijden (indicatief)</div>
+              <div class="contact-value">
+                Ma t/m vr: 08.00 – 18.00 uur<br>
+                Za: 09.00 – 17.00 uur<br>
+                Zo: in het seizoen beperkt / op afspraak
+              </div>
+            </div>
+
+            <div>
+              <div class="contact-label">Route</div>
+              <div class="map-frame">
+                <!-- Vervang de src eventueel door uw eigen Google Maps embed -->
+                <iframe
+                  title="Locatie Jachthaven van der Zwaard"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=Uiterweg+363,+1431+AK+Aalsmeer&output=embed">
+                </iframe>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span>Van der Zwaard Jachtwerf B.V. · Aalsmeer</div>
+      <div class="footer-links">
+        <a href="#home">Naar boven</a>
+        <a href="#">Algemene voorwaarden</a>
+        <a href="#">Privacyverklaring</a>
+      </div>
+    </div>
+  </footer>
+<script>
+  // Sluit mobiele menu als er op een link wordt geklikt
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function () {
+      document.querySelector('header').classList.remove('nav-open');
+    });
+  });
+</script>
+
+<script>
+    // WhatsApp popup
+    const whatsappModal = document.getElementById('whatsapp-modal');
+    const whatsappClose = whatsappModal ? whatsappModal.querySelector('.whatsapp-modal-close') : null;
+
+    function openWhatsappModal() {
+      if (whatsappModal) {
+        whatsappModal.style.display = 'flex';
+      }
+    }
+
+    if (whatsappClose) {
+      whatsappClose.addEventListener('click', function () {
+        whatsappModal.style.display = 'none';
+      });
+    }
+
+    if (whatsappModal) {
+      whatsappModal.addEventListener('click', function (e) {
+        if (e.target === whatsappModal) {
+          whatsappModal.style.display = 'none';
+        }
+      });
+    }
+
+    window.addEventListener('load', function () {
+      // Laat de WhatsApp-popup kort na het laden verschijnen
+      setTimeout(openWhatsappModal, 800);
+    });
+  </script>
+
+  <!-- Google Maps JavaScript API (voor live reviews) -->
+  <script async defer
+  src="https://search.google.com/local/reviews?placeid=ChIJddXu9PLdxUcR70LJFLAKIvk">
+</script>
+  <!-- Privacyverklaring Popup -->
+<div id="privacyverklaring" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:99999;
+  padding:20px;
+  overflow-y:auto;
+">
+  <div style="
+    max-width:800px;
+    margin:40px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    line-height:1.6;
+  ">
+    <h2>Privacyverklaring</h2>
+    <p><strong>Wie zijn wij?</strong><br>
+    Van der Zwaard Jachtwerf B.V., gevestigd aan Uiterweg 363 1431 AK Aalsmeer, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring.</p>
+
+    <p><strong>Contactgegevens:</strong><br>
+    www.vdzwaardjachtwerf.nl<br>
+    Uiterweg 363 1431 AK Aalsmeer<br>
+    Telefoon: 0297-325008<br>
+    E-mail: info@vdzwaardjachtwerf.nl<br>
+    P. van der Zwaard is de Functionaris Gegevensbescherming: info@vdzwaardjachtwerf.nl</p>
+
+    <p><strong>Persoonsgegevens die wij verwerken:</strong><br>
+    Bedrijfsnaam, voor- en achternaam, adresgegevens, telefoonnummer, e-mailadres, overige door u verstrekte informatie, contactgegevens via app.</p>
+
+    <p><strong>Bijzondere en/of gevoelige gegevens:</strong><br>
+    Wij verzamelen geen gegevens van bezoekers jonger dan 16 zonder toestemming van ouders/voogd.</p>
+
+    <p><strong>Doelen van gegevensverwerking:</strong><br>
+    Betalingen verwerken, contact opnemen indien nodig voor dienstverlening, voldoen aan wettelijke verplichtingen.</p>
+
+    <p><strong>Geautomatiseerde besluitvorming:</strong><br>
+    Wij nemen geen besluiten die aanzienlijke gevolgen hebben op basis van geautomatiseerde systemen.</p>
+
+    <p><strong>Bewaartermijn:</strong><br>
+    Uw gegevens worden bewaard tot u verzoekt tot verwijdering.</p>
+
+    <p><strong>Delen met derden:</strong><br>
+    Geen verkoop van gegevens; alleen verstrekking indien noodzakelijk voor uitvoering overeenkomst of wettelijke verplichting.</p>
+
+    <p><strong>Cookies:</strong><br>
+    Wij gebruiken geen cookies.</p>
+
+    <p><strong>Uw rechten:</strong><br>
+    Inzien, corrigeren, verwijderen, bezwaar maken, gegevensoverdracht. Mail naar info@vdzwaardjachtwerf.nl.<br>
+    Bij verzoek identiteit gedeeltelijk afschermen svp. Reactie binnen 4 weken.</p>
+
+    <p><strong>Klachten:</strong><br>
+    U kunt terecht bij de Autoriteit Persoonsgegevens.</p>
+
+    <p><strong>Beveiliging:</strong><br>
+    Wij nemen passende maatregelen om uw gegevens te beveiligen. Meld misbruik via info@vdzwaardjachtwerf.nl.</p>
+
+    <button onclick="document.getElementById('privacyverklaring').style.display='none'" 
+      style="margin-top:20px; padding:10px 18px; background:#0073AA; color:white; border:none; border-radius:6px; cursor:pointer;">
+      Sluiten
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelector('a[href="#privacyverklaring"]').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('privacyverklaring').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
